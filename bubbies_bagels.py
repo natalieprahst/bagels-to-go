@@ -24,21 +24,23 @@ def main():
     title.draw(window)
 
     # STARTUP SCREEN
-    welcomeMsg = Text(Point(1.5, 3.8), "WELCOME")
+    welcomeMsg = Text(Point(1.5, 3.9), "WELCOME")
     welcomeMsg.setStyle("bold")
-    welcomeMsg.setSize(18)
+    welcomeMsg.setSize(22)
     welcomeMsg.draw(window)
     
-    startupMsg = Text(Point(1.5, 1.5), "Click anywhere\nto begin your order!")
+    startupMsg = Text(Point(1.5, 1.4), "Click anywhere\nto begin your order!")
     startupMsg.setSize(13)
     startupMsg.draw(window)
 
     bagelOuter = Circle(Point(1.5, 2.7), 0.8)
     bagelOuter.setFill("sandybrown")
+    bagelOuter.setOutline("SaddleBrown")
     bagelOuter.draw(window)
 
     bagelInner = Circle(Point(1.5, 2.7), 0.3)
     bagelInner.setFill("turquoise")
+    bagelInner.setOutline("SaddleBrown")
     bagelInner.draw(window)
 
     window.getMouse()
@@ -273,34 +275,48 @@ def main():
         orderInfoMsg = "Your order will be ready for\npickup in about 30 minutes."
     else:
         orderInfoMsg = "Your order will be ready for\npickup in about 15 minutes."
-    orderInfo = Text(Point(1.5, 1.7), orderInfoMsg)
+    orderInfo = Text(Point(1.5, 1.4), orderInfoMsg)
     orderInfo.draw(window)
 
     # open faced bagel image
     leftHalfOuter = Circle(Point(1, 3), 0.4)
     leftHalfOuter.setFill("sandybrown")
+    leftHalfOuter.setOutline("SaddleBrown")
+    
     leftHalfInner = Circle(Point(1, 3), 0.13)
     leftHalfInner.setFill("turquoise")
+    leftHalfInner.setOutline("SaddleBrown")
     
     leftHalfOuter.draw(window)
     leftHalfInner.draw(window)
 
     rightHalfOuter = Circle(Point(2, 3), 0.4)
     rightHalfOuter.setFill("sandybrown")
+    rightHalfOuter.setOutline("SaddleBrown")
 
     rightHalfInner = Circle(Point(2, 3), 0.13)
     rightHalfInner.setFill("turquoise")
+    rightHalfInner.setOutline("SaddleBrown")
 
     creamCheeseOuter = Circle(Point(2, 3), 0.36)
     creamCheeseOuter.setFill("white")
+    creamCheeseOuter.setOutline("BlanchedAlmond")
 
     creamCheeseInner = Circle(Point(2, 3), 0.16)
     creamCheeseInner.setFill("sandybrown")
+    creamCheeseInner.setOutline("BlanchedAlmond")
+
+    smile = Polygon(Point(1.0, 2.3), Point(1.2, 2.1),
+                    Point(1.8, 2.1), Point(2.0, 2.3))
+    smile.setFill("white")
+    smileLine = Line(Point(1.1, 2.2), Point(1.9, 2.2))
 
     rightHalfOuter.draw(window)
     creamCheeseOuter.draw(window)
     creamCheeseInner.draw(window)
     rightHalfInner.draw(window)
+    smile.draw(window)
+    smileLine.draw(window)
 
 
     # EXIT WINDOW
