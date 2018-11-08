@@ -16,6 +16,7 @@ def main():
 
     titleBanner = Rectangle(Point(0, 4.7), Point(3, 5))
     titleBanner.setFill("PaleTurquoise")
+    titleBanner.setOutline("PaleTurquoise")
     titleBanner.draw(window)
     
     title = Text(Point(1.5, 4.85), "BUBBIE'S BAGELS")
@@ -30,7 +31,6 @@ def main():
     
     startupMsg = Text(Point(1.5, 1.5), "Click anywhere\nto begin your order!")
     startupMsg.setSize(13)
-    startupMsg.setStyle("bold")
     startupMsg.draw(window)
 
     bagelOuter = Circle(Point(1.5, 2.7), 0.8)
@@ -50,6 +50,7 @@ def main():
     # display "order in progress" banner
     orderBanner = Rectangle(Point(0, 4.5), Point(3, 4.7))
     orderBanner.setFill("PaleTurquoise1")
+    orderBanner.setOutline("PaleTurquoise1")
     orderBanner.draw(window)
     
     orderTitle = Text(Point(1.5, 4.6), "Order in progress")
@@ -93,6 +94,7 @@ def main():
     # next page button
     nextButton = Rectangle(Point(0.8, 0.3), Point(2.2, 0.7))
     nextButton.setFill("PaleTurquoise1")
+    nextButton.setOutline("PaleTurquoise1")
     nextButton.draw(window)
     
     nextMsg = Text(Point(1.5, 0.5), "Next >>>")
@@ -237,26 +239,68 @@ def main():
     bagelTotal = calculateBagelTotal(numOfPlain, numOfWhole, numOfEverything)
     loxTotal = calculateLoxTotal(amountOfLox)
 
+    # calculate totals
     subTotal = calculateSubTotal(bagelTotal, loxTotal)
     tax = calculateTax(subTotal)
     grandTotal = calculateGrandTotal(subTotal, tax)
 
-    subTotalMsg = Text(Point(1.3, 2), "Subtotal: $"+"{0:.2f}".format(subTotal))
-    taxMsg = Text(Point(1.3, 1.7), "Tax: $"+"{0:.2f}".format(tax))
-    grandTotalMsg = Text(Point(1.3, 1.3), "Grand total: $"+"{0:.2f}".format(grandTotal))
+    # display totals
+    subTotalMsg = Text(Point(1.3, 3), "Subtotal: $"+"{0:.2f}".format(subTotal))
+    taxMsg = Text(Point(1.1, 2.7), "Tax: $"+"{0:.2f}".format(tax))
+    grandTotalMsg = Text(Point(1.3, 2.2), "Grand total: $"+"{0:.2f}".format(grandTotal))
     grandTotalMsg.setStyle("bold")
 
-    nextMsg.setText("Place Order")
-    
     subTotalMsg.draw(window)
     taxMsg.draw(window)
     grandTotalMsg.draw(window)
 
-    
+    nextMsg.setText("Place Order")
 
     window.getMouse()
     getNextClick(click, window)
 
+    # undraw Step 4 objects before moving to step 5
+    subTotalMsg.undraw()
+    taxMsg.undraw()
+    grandTotalMsg.undraw()
+
+    # ORDER STEP 5: Closing message
+    nextMsg.setText("Close")
+    orderTitle.setText("Order complete")
+    stepMsg.setText("Bagels are on their way!")
+
+    if (totalNumOfBagels > 24):
+        orderInfoMsg = "Your order will be ready for\npickup in about 30 minutes."
+    else:
+        orderInfoMsg = "Your order will be ready for\npickup in about 15 minutes."
+    orderInfo = Text(Point(1.5, 1.7), orderInfoMsg)
+    orderInfo.draw(window)
+
+    # open faced bagel image
+    leftHalfOuter = Circle(Point(1, 3), 0.4)
+    leftHalfOuter.setFill("sandybrown")
+    leftHalfInner = Circle(Point(1, 3), 0.13)
+    leftHalfInner.setFill("turquoise")
+    
+    leftHalfOuter.draw(window)
+    leftHalfInner.draw(window)
+
+    rightHalfOuter = Circle(Point(2, 3), 0.4)
+    rightHalfOuter.setFill("sandybrown")
+
+    rightHalfInner = Circle(Point(2, 3), 0.13)
+    rightHalfInner.setFill("turquoise")
+
+    creamCheeseOuter = Circle(Point(2, 3), 0.36)
+    creamCheeseOuter.setFill("white")
+
+    creamCheeseInner = Circle(Point(2, 3), 0.16)
+    creamCheeseInner.setFill("sandybrown")
+
+    rightHalfOuter.draw(window)
+    creamCheeseOuter.draw(window)
+    creamCheeseInner.draw(window)
+    rightHalfInner.draw(window)
 
 
     # EXIT WINDOW
